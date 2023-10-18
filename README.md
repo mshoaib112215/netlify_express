@@ -1,22 +1,43 @@
-# Express.js on Netlify Example
+# Vercel-Express
 
-[![Netlify
-Status](https://api.netlify.com/api/v1/badges/9aaef7de-1e5d-4fda-bc39-faa10a68b35b/deploy-status)](https://app.netlify.com/sites/netlify-express/deploys)
+Vercel Express and UI fullstack webapp example.
 
-[![Deploy to
-Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/neverendingqs/netlify-express)
+Live Demo - https://vercel-express-ngduc.vercel.app
 
-An example of how to host an Express.js app on Netlify using
-[serverless-http](https://github.com/dougmoscrop/serverless-http). See
-[express/server.js](express/server.js) for details, or check it out at
-https://netlify-express.netlify.com/!
+### Set up & Deploy with Vercel
 
-[index.html](index.html) simply loads html from the Express.js app using
-`<object>`, and the app is hosted at `/.netlify/functions/server`. Examples of
-how to access the Express.js endpoints:
+Star and clone this repo, update package.json with your information (project name, your name, etc.), verify vercel.json.
 
-```sh
-curl https://netlify-express.netlify.com/.netlify/functions/server
-curl https://netlify-express.netlify.com/.netlify/functions/server/another
-curl --header "Content-Type: application/json" --request POST --data '{"json":"POST"}' https://netlify-express.netlify.com/.netlify/functions/server
 ```
+$ npm install
+$ cd ./backend && npm install && npm run build
+$ cd ..
+$ npm install vercel -g
+$ vercel
+```
+
+- Vercel will generate a ".vercel" directory, don't share or commit this one!
+- After deploying, open your URL like this: YOUR-VERCEL-APP-ID.vercel.app
+- Build your backend and ui, the outputs are located at "backend/build" and "ui/buid".
+  - Some boilerplate generators output the built files to "dist" instead of "build", so update your vercel.json accordingly.
+
+### Code
+
+Backend
+- See [backend/README.md](./backend/README.md)
+
+Frontend
+- See [ui/README.md](./ui/README.md)
+
+### [vercel.json](./vercel.json)
+
+- Map API routes (/api/...) and static (UI) routes (/...).
+- Environment variables - examples:
+  - ```$ vercel secrets add my-mongodb-uri mongodb+srv://<user>:<password>@clusteridxxx.mongodb.net/<database-name>?retryWrites=true```
+  - add "env" to vercel.json ```{ "env": { "MONGODB_URI": "@my-mongodb-uri" }, ... }```
+
+### Links
+
+- Article https://medium.com/javascript-in-plain-english/create-and-deploy-a-node-js-express-app-for-free-f75d8796ba70
+- Article https://vercel.com/guides/using-express-with-vercel
+- Node Express Mongoose boilerplate https://github.com/ngduc/node-rem
